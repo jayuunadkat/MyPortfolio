@@ -42,7 +42,7 @@ class HomeListCell: UITableViewCell {
     }()
 
     private lazy var mainStackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [avatarView, textStackView])
+        let stack = UIStackView(arrangedSubviews: [avatarView, textStackView, checkboxView])
         stack.axis = .horizontal
 
         stack.spacing = 12
@@ -74,11 +74,30 @@ class HomeListCell: UITableViewCell {
         ])
     }
 
-    func configure(title: String, subtitle: String) {
+    func configure(title: String, subtitle: String, showCheckBox: Bool = false) {
         titleLabel.text = title
         subtitleLabel.text = subtitle
         subtitleLabel.isHidden = subtitle.isEmpty
         avatarView.setupInitials(from: title)
+
+        if showCheckBox {
+            checkboxView.isHidden = false
+            checkboxView.delegate = self
+        } else {
+            checkboxView.isHidden = true
+        }
+    }
+
+    func toggleCheckBox() {
+        if !checkboxView.isHidden {
+            checkboxView.toggle()
+        }
+    }
+}
+
+extension HomeListCell: CheckboxViewDelegate {
+    func checkboxView(_ checkboxView: CheckboxView, didChangeState isChecked: Bool) {
+        print("Checkbox state changed to: \(isChecked)")
     }
 }
 

@@ -16,6 +16,10 @@ class ShareViewController: UIViewController {
         openMainApp()
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        print("Disaappeared from ShareViewController")
+    }
+
     private func getShareLinkURL(queryItems: [String: String]?) -> URL? {
         var components: URLComponents = URLComponents()
         components.scheme = "ShareEx"
@@ -73,7 +77,7 @@ class ShareViewController: UIViewController {
         while responder != nil {
             if let application = responder as? UIApplication {
                 application.open(url)
-//                return application.perform(#selector(openURL(_:)), with: url) != nil
+                self.close()
             }
             responder = responder?.next
         }

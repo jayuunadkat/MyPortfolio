@@ -25,7 +25,7 @@ final class CheckboxView: UIView {
         return imageView
     }()
 
-    var isChecked: Bool = false {
+    private var isChecked: Bool = false {
         didSet {
             UIView.transition(with: checkmarkImageView, duration: 0.2, options: .transitionCrossDissolve) {
                 self.checkmarkImageView.isHidden = !self.isChecked
@@ -68,9 +68,9 @@ final class CheckboxView: UIView {
             checkmarkImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.6),
         ])
 
-        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapCheckbox))
-        addGestureRecognizer(tap)
-        isUserInteractionEnabled = true
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapCheckbox))
+//        addGestureRecognizer(tap)
+//        isUserInteractionEnabled = true
     }
 
     func configure(isChecked: Bool, borderColor: UIColor = .systemTeal) {
@@ -79,6 +79,10 @@ final class CheckboxView: UIView {
     }
 
     @objc private func didTapCheckbox() {
+        isChecked.toggle()
+    }
+
+    func toggle() {
         isChecked.toggle()
     }
 

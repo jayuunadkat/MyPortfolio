@@ -28,6 +28,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
     }
 
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        guard let url = URLContexts.first?.url else { return }
+        handleOpenURL(url: url)
+    }
+
+
+
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
@@ -59,3 +66,32 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
+extension SceneDelegate {
+    private func handleOpenURL(url: URL) {
+        guard url.scheme == "ShareEx", let components = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
+            return
+        }
+
+        if let host = components.host {
+            switch host {
+            case "share":
+                handleShareExtensionURL(url)
+            default:
+                break
+            }
+        }
+
+    }
+
+
+    private func handleShareExtensionURL(_ url: URL) {
+        print("Share extension URL received: \(url)")
+        let rootNavVC = window?.rootViewController as! UINavigationController
+        let shareWithVC = ShareWithSheetViewController()
+
+        let navVC = UINavigationController(rootViewController: shareWithVC)
+        navVC.modalPresentationStyle = .pageSheet
+
+        rootNavVC.present(navVC, animated: true)
+    }
+}

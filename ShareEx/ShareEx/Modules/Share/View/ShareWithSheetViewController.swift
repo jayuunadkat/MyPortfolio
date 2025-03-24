@@ -1,36 +1,26 @@
 //
-//  HomeViewController.swift
+//  ShareWithSheetViewController.swift
 //  ShareEx
 //
-//  Created by Jaymeen Unadkat on 23/03/25.
+//  Created by Jaymeen Unadkat on 24/03/25.
 //
 
 import UIKit
 import SwiftUI
 
-protocol HomeViewProtocol: AnyObject {
-    var viewController: UIViewController { get }
-    func showList(_ list: [User])
-}
-
-class HomeViewController: UIViewController {
-    let presenter: HomePresenterProtocol
-
+class ShareWithSheetViewController: UIViewController {
     let tableView: UITableView = {
         let tableView: UITableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
 
-    var usersList: [User] = []
-
-    init(presenter: HomePresenterProtocol) {
-        self.presenter = presenter
+    init() {
         super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder: NSCoder) {
-        fatalError( "init(coder:) has not been implemented" )
+        fatalError("init(coder:) has not been implemented")
     }
 
     override func viewDidLoad() {
@@ -40,31 +30,13 @@ class HomeViewController: UIViewController {
         configureVC()
     }
 
+    var usersList: [User] = []
+
     private func setupNavBar() {
-        let navigationBarAppearance = UINavigationBarAppearance()
-        navigationBarAppearance.shadowColor = UIColor.systemTeal
-        navigationBarAppearance.shadowImage = UIImage()
-        navigationBarAppearance.backgroundColor = UIColor.systemTeal
-        navigationBarAppearance.titleTextAttributes = [
-            .foregroundColor: UIColor.white
-        ]
+        navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance ?? .none
 
-        navigationController?.navigationBar.standardAppearance = navigationBarAppearance
-        navigationController?.navigationBar.scrollEdgeAppearance = navigationBarAppearance
-
-        title = "Users"
+        title = "Share with"
     }
-
-    private func configureVC() {
-        presenter.refresh()
-    }
-
-    private func setupView() {
-        setupTableView()
-    }
-}
-
-extension HomeViewController {
 
     private func setupTableView() {
         view.addSubview(tableView)
@@ -74,15 +46,24 @@ extension HomeViewController {
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-//        tableView.separatorStyle = .none
+        tableView.separatorStyle = .none
         tableView.register(HomeListCell.self, forCellReuseIdentifier: String(describing: HomeListCell.self))
         tableView.allowsSelection = true
         tableView.delegate = self
         tableView.dataSource = self
     }
+
+    private func configureVC() {
+        self.usersList = HomeInteractor(intentService: IntentService()).listUsers()
+    }
+
+    private func setupView() {
+        setupTableView()
+    }
 }
 
-extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+
+extension ShareWithSheetViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -96,38 +77,27 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             fatalError("Cell not available")
         }
         let user: User = usersList[indexPath.row]
-        cell.configure(title: user.title, subtitle: "")
+        cell.configure(title: user.title, subtitle: "", showCheckBox: true)
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? HomeListCell {
+            cell.toggleCheckBox()
+        }
         let user = usersList[indexPath.row]
-        presenter.donateIntent(for: user)
         print("User tapped: \(user.title)")
     }
 }
 
-extension HomeViewController: HomeViewProtocol {
-    var viewController: UIViewController {
-        self
-    }
-
-    func showList(_ list: [User]) {
-        DispatchQueue.main.async {
-            self.usersList = list
-            self.tableView.reloadData()
-        }
-    }
-}
-
-struct HomeView: View {
+struct ShareWithListView: View {
     var body: some View {
-        ViewControllerPreview(viewController: HomeRouter.createModule())
+        ViewControllerPreview(viewController: ShareWithSheetViewController())
     }
 }
 
-struct HomeView_Previews: PreviewProvider {
+struct ShareView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        ShareWithListView()
     }
 }
