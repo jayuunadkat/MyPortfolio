@@ -85,8 +85,6 @@ extension ShareWithSheetViewController: UITableViewDelegate, UITableViewDataSour
         if let cell = tableView.cellForRow(at: indexPath) as? HomeListCell {
             cell.toggleCheckBox()
         }
-        let user = usersList[indexPath.row]
-        print("User tapped: \(user.title)")
     }
 }
 

@@ -17,20 +17,21 @@ class IntentService: IntentServiceProtocol {
 
     func donateIntent(userID: String, name: String) {
         let groupName = INSpeakableString(spokenPhrase: "Juan Chavez")
-        let sendMessageIntent = INSendMessageIntent(recipients: nil,
-                                                    content: nil,
-                                                    speakableGroupName: groupName,
-                                                    conversationIdentifier: "sampleConversationIdentifier",
-                                                    serviceName: nil,
-                                                    sender: nil)
-
-
+        let sendMessageIntent = INSendMessageIntent(
+            recipients: nil,
+            outgoingMessageType: .unknown,
+            content: nil,
+            speakableGroupName: groupName,
+            conversationIdentifier: "sampleConversationIdentifier",
+            serviceName: nil,
+            sender: nil,
+            attachments: []
+        )
 
         let image = INImage(named: "person")
         sendMessageIntent.setImage(image, forParameterNamed: \.speakableGroupName)
 
 
-        // Donate the intent.
         let interaction = INInteraction(intent: sendMessageIntent, response: nil)
         interaction.donate(completion: { error in
             if let error = error {
@@ -39,60 +40,43 @@ class IntentService: IntentServiceProtocol {
                 print("Successfully donated sendMessage intent.")
             }
         })
-
-//        let groupName = INSpeakableString(spokenPhrase: name)
-//
-//        let intent = INSendMessageIntent(
-//            recipients: nil, outgoingMessageType: .unknown, content: nil,
-//            speakableGroupName: groupName, conversationIdentifier: userID, serviceName: nil, sender: nil,
-//            attachments: nil)
-//
-//        intent.setImage(INImage(named: "person"), forParameterNamed: \.recipients)
-//
-//        let interaction = INInteraction(intent: intent, response: nil)
-//        interaction.donate { error in
-//            if let error = error {
-//                print("Error donating intent: \(error)")
-//            } else {
-//                print("Successfully donated sendMessage intent.")
-//            }
-//        }
-
-        /**let person = INPerson(
-            personHandle: INPersonHandle(value: userID, type: .unknown),
-            nameComponents: nil,
-            displayName: name,
-            image: nil,
-            contactIdentifier: nil,
-            customIdentifier: userID
-        )
-
-        let name = INSpeakableString(spokenPhrase: name)
-
-        let intent = INSendMessageIntent(
-            recipients: [person],
-            outgoingMessageType: .unknown,
-            content: nil,
-            speakableGroupName: name,
-            conversationIdentifier: userID,
-            serviceName: nil,
-            sender: nil,
-            attachments: []
-        )
-
-        intent.setImage(INImage(named: "person"), forParameterNamed: \.recipients)
-        intent.suggestedInvocationPhrase = "Share to \(name)"
-
-        let interaction = INInteraction(intent: intent, response: nil)
-        interaction.donate { error in
-            if let error = error {
-                print("Intent donation failed: \(error)")
-            } else {
-                print("Intent donated for \(name)")
-            }
-        }*/
     }
 }
+
+
+/**let person = INPerson(
+ personHandle: INPersonHandle(value: userID, type: .unknown),
+ nameComponents: nil,
+ displayName: name,
+ image: nil,
+ contactIdentifier: nil,
+ customIdentifier: userID
+ )
+
+ let name = INSpeakableString(spokenPhrase: name)
+
+ let intent = INSendMessageIntent(
+ recipients: [person],
+ outgoingMessageType: .unknown,
+ content: nil,
+ speakableGroupName: name,
+ conversationIdentifier: userID,
+ serviceName: nil,
+ sender: nil,
+ attachments: []
+ )
+
+ intent.setImage(INImage(named: "person"), forParameterNamed: \.recipients)
+ intent.suggestedInvocationPhrase = "Share to \(name)"
+
+ let interaction = INInteraction(intent: intent, response: nil)
+ interaction.donate { error in
+ if let error = error {
+ print("Intent donation failed: \(error)")
+ } else {
+ print("Intent donated for \(name)")
+ }
+ }*/
 
 /**
  func generateRecipient(conversationIdentifier:String, displayName:String, img:String) {

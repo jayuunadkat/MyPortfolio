@@ -18,6 +18,7 @@ class ShareViewController: UIViewController {
 
     override func viewDidDisappear(_ animated: Bool) {
         print("Disaappeared from ShareViewController")
+        close()
     }
 
     private func getShareLinkURL(queryItems: [String: String]?) -> URL? {
