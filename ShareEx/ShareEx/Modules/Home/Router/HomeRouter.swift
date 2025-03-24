@@ -2,7 +2,7 @@
 //  HomeRouter.swift
 //  ShareEx
 //
-//  Created by Jaymeen Unadkat on 23/03/25.
+//  C`reated by Jaymeen Unadkat on 23/03/25.
 //
 
 import UIKit
@@ -13,7 +13,8 @@ protocol HomeRouterProtocol: AnyObject {
 
 class HomeRouter: HomeRouterProtocol {
     static func createModule() -> UIViewController {
-        let interactor: HomeInteractorProtocol = HomeInteractor()
+        let intentService: IntentServiceProtocol = IntentService()
+        let interactor: HomeInteractorProtocol = HomeInteractor(intentService: intentService)
         var presenter: HomePresenterProtocol = HomePresenter(interactor: interactor)
         let viewController = HomeViewController(presenter: presenter)
         presenter.view = viewController

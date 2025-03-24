@@ -6,11 +6,25 @@
 //
 
 import Foundation
+import Intents
+
 protocol HomeInteractorProtocol: AnyObject {
     func listUsers() -> [User]
+    func donateIntent(for targetId: String, name: String)
 }
 
 class HomeInteractor: HomeInteractorProtocol {
+
+    var intentService: IntentServiceProtocol
+
+    init(intentService: IntentServiceProtocol) {
+        self.intentService = intentService
+    }
+
+    func donateIntent(for targetId: String, name: String) {
+        intentService.donateIntent(userID: targetId, name: name)
+    }
+
     func listUsers() -> [User] {
         return [
             User(title: "John Doe"),

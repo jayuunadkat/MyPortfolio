@@ -102,6 +102,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let user = usersList[indexPath.row]
+        presenter.donateIntent(for: user)
         print("User tapped: \(user.title)")
     }
 }

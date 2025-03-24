@@ -10,6 +10,7 @@ import UIKit
 protocol HomePresenterProtocol {
     var view: HomeViewProtocol? { get set }
     func refresh()
+    func donateIntent(for user: User)
 }
 
 class HomePresenter: HomePresenterProtocol {
@@ -27,5 +28,9 @@ class HomePresenter: HomePresenterProtocol {
     private func listUsers() {
         let users = interactor.listUsers()
         view?.showList(users)
+    }
+
+    func donateIntent(for user: User) {
+        interactor.donateIntent(for: user.id.uuidString, name: user.title)
     }
 }
