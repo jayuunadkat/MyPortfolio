@@ -45,10 +45,29 @@ class InitialsAvatarView: UIView {
         ])
     }
 
-    func setupInitials(from name: String) {
+    func setupInitials(from name: String, color: UIColor = .red) {
         let firstLetter = name.trimmingCharacters(in: .whitespacesAndNewlines).first?.uppercased() ?? "?"
         initialsLabel.text = firstLetter
         backgroundColor = getBackgroundColor(for: firstLetter.first!)
+
+        if color != .clear {
+            addBorder(with: color)
+            addShadow(with: color)
+        }
+    }
+
+    private func addBorder(with color: UIColor) {
+        layer.borderColor = color.cgColor
+        layer.borderWidth = 2
+        layer.masksToBounds = true
+    }
+
+    private func addShadow(with color: UIColor) {
+        layer.masksToBounds = false
+        layer.shadowColor = color.cgColor
+        layer.shadowOpacity = 0.3
+        layer.shadowOffset = CGSize(width: 0, height: 3)
+        layer.shadowRadius = 5
     }
 }
 

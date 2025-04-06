@@ -20,6 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         window.backgroundColor = .systemBackground
 
+//        let rootVC: UIViewController = ChatViewController()
         let rootVC: UIViewController = HomeRouter.createModule()
         let rootNavVC: UINavigationController = UINavigationController(rootViewController: rootVC)
         window.rootViewController = rootNavVC
